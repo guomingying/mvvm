@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='box'>
+        <input type="text" v-model="msg.answer">
+        <div>{{question}}</div>
+        <div>{{msg.answer}}</div>
+        <!-- <input type="text" v-model="question"> -->
+    </div>
+    <!-- <script src='./mvvm.js'></script> -->
+    <script src="./renmvvm.js"></script>
+    <script>
+        new Mvvms({
+            el: 'box',
+            data: {
+                question: '来了, 老弟?',
+                msg: {
+                    answer: '嗯！来了！',
+                    ander:{
+                        again:"又来了啊"
+                    }
+                }
+            }
+        })
+      
+    //     let obj={
+    //         name:"gmy"
+    //     }
+        
+    //     Object.defineProperty(obj,'name',{
+    //         get(){
+    //             return '呱呱呱'
+    //         },
+    //         set(a){
+    //             console.log(a)
+    //         }
+    //     })
+
+    //    console.log(obj.name)
+    //     obj.name="ddd"
+    //     obj.name="dddddd"
+    </script>
+</body>
+</html>

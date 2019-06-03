@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <div id="apps"></div>
+    <script src="./observer.js"></script>
+    <script>
+      const data={
+          name:"gmy",
+          age:20,
+          obj:{
+              wb:"wangbadan",
+              age:"2222"
+          }
+      }  
+      //订阅器（订阅者，发布）
+        function Dep() {
+            this.subs = [];//维护订阅者的维护
+        }
+        Dep.prototype = {
+            addSub: function(sub) { //添加订阅者  不能用箭头函数没有this
+                this.subs.push(sub);
+            },
+            notify: function(val) {  //发布通知
+                this.subs.forEach(function(sub) {
+                    sub.update(val);
+                });
+            }
+        };
+        function Watcher() {
+
+        }
+        Watcher.prototype = {
+            update:function(val){
+                console.log('更新',val)
+            }
+            // get: function(key) {
+            //     Dep.target = this;
+            //     this.value = data[key];    // 这里会触发属性的getter，从而添加订阅者
+            //     Dep.target = null;
+            // }
+        }
+        observer(data)
+
+        function setAppHtml(isFirst) {
+            if(isFirst){
+                Dep.target =new Watcher()
+            }
+            document.getElementById('app').innerHTML=data.name
+            document.getElementById('apps').innerHTML=data.age
+            Dep.target=null
+        }
+        setAppHtml(true)
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //   function observer(data) {
+    //       console.log(data)
+    //       Object.keys(data).forEach((item)=>{
+             
+    //         var val= data[item];
+    //         observe(val)
+    //         console.log(val)
+    //         Object.defineProperty(data,item,{
+    //             get(){
+    //                 console.log('获取了'+item)
+    //                 return val
+    //             },
+    //             set(value){
+    //                 console.log('设置了'+item+'值是：',value)
+    //                 val=value
+    //             }
+    //         })
+    //       })
+    //   }
+    
+     
+    </script>
+</body>
+</html>
